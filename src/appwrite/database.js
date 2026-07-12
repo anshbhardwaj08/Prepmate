@@ -25,24 +25,23 @@ export class DatabaseService {
         this.storage = new Storage(this.client);
 
     }
-    async createUserProfile({
-  userId,
-  role = "candidate",
-}) {
-  try {
-    return await this.database.createDocument(
-      conf.appwriteDatabaseId,
-      conf.usersCollectionId,
-      ID.unique(),
-      {
-        userId,
-        role,
-      }
-    );
-  } catch (error) {
-    throw error;
-  }
-}
+    async createUserProfile({ userId, role = "candidate", name = "", email = "" }) {
+        try {
+            return await this.database.createDocument(
+            conf.appwriteDatabaseId,
+            conf.usersCollectionId,
+            ID.unique(),
+            {
+                userId,
+                role,
+                name,   // ← add this
+                email,  // ← add this
+            }
+            );
+        } catch (error) {
+            throw error;
+        }
+        }
 
 //     async getUserProfile(userId) {
 //   try {

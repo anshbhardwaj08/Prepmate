@@ -28,15 +28,13 @@ export class AuthService {
 
     if (!userAccount) return null;
 
-    // Login first
-    const session = await this.login({
-      email,
-      password,
-    });
+    const session = await this.login({ email, password });
 
-    // Now the authenticated user can create the profile
+    // ✅ Now passing name and email
     await databaseService.createUserProfile({
       userId: userAccount.$id,
+      name,   // ← add this
+      email,  // ← add this
     });
 
     return session;
