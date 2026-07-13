@@ -44,7 +44,7 @@ const navItems = [
   },
 ];
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ isOpen, onClose }) => {
   const dispatch = useDispatch();
 
   const handleLogout = async () => {
@@ -60,71 +60,99 @@ const AdminSidebar = () => {
     }`;
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-60 flex flex-col bg-[#0c0e14] border-r border-white/[0.07]">
+    <>
+      {/* Mobile backdrop */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 z-20 bg-black/60 backdrop-blur-sm md:hidden"
+          onClick={onClose}
+        />
+      )}
 
-      {/* Logo */}
-      <div className="px-4 py-5 border-b border-white/[0.07]">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
-            <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-sm font-semibold text-white leading-none tracking-tight">PrepMate</p>
-            <p className="text-[10px] text-slate-500 mt-0.5 tracking-wide">Admin Console</p>
-          </div>
-        </div>
-      </div>
+      <aside
+        className={`
+          fixed left-0 top-0 h-screen w-60 z-30 flex flex-col
+          bg-[#0c0e14] border-r border-white/[0.07]
+          transition-transform duration-300 ease-in-out
+          ${isOpen ? "translate-x-0" : "-translate-x-full"}
+          md:translate-x-0
+        `}
+      >
+        {/* Logo */}
+        <div className="px-4 py-5 border-b border-white/[0.07]">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
+                <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+                </svg>
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-white leading-none tracking-tight">PrepMate</p>
+                <p className="text-[10px] text-slate-500 mt-0.5 tracking-wide">Admin Console</p>
+              </div>
+            </div>
 
-      {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
-        <p className="text-[9px] font-semibold text-slate-600 uppercase tracking-[0.08em] px-3 mb-2">
-          Main menu
-        </p>
-        {navItems.map(({ to, end, label, icon }) => (
-          <NavLink key={to} to={to} end={end} className={navClass}>
-            {({ isActive }) => (
-              <>
-                <span className={isActive ? "text-indigo-400" : "text-slate-500"}>
-                  {icon}
-                </span>
-                <span>{label}</span>
-                {isActive && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
-                )}
-              </>
-            )}
-          </NavLink>
-        ))}
-      </nav>
-
-      {/* Footer */}
-      <div className="px-3 pb-4 border-t border-white/[0.07] pt-3 space-y-1">
-        {/* User info row */}
-        <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl">
-          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
-            <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-            </svg>
-          </div>
-          <div className="min-w-0">
-            <p className="text-xs font-medium text-slate-300 truncate">Administrator</p>
-            <p className="text-[10px] text-slate-600 truncate">prepmate.admin</p>
+            {/* Close button — mobile only */}
+            <button
+              onClick={onClose}
+              className="md:hidden w-7 h-7 rounded-lg flex items-center justify-center text-slate-500 hover:text-slate-300 hover:bg-white/5 transition-all"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
           </div>
         </div>
 
-        <button
-          onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400/80 border border-red-500/15 bg-red-500/5 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/25 transition-all duration-150"
-        >
-          <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-          </svg>
-          Sign out
-        </button>
-      </div>
-    </aside>
+        {/* Nav */}
+        <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
+          <p className="text-[9px] font-semibold text-slate-600 uppercase tracking-[0.08em] px-3 mb-2">
+            Main menu
+          </p>
+          {navItems.map(({ to, end, label, icon }) => (
+            <NavLink key={to} to={to} end={end} className={navClass} onClick={onClose}>
+              {({ isActive }) => (
+                <>
+                  <span className={isActive ? "text-indigo-400" : "text-slate-500"}>
+                    {icon}
+                  </span>
+                  <span>{label}</span>
+                  {isActive && (
+                    <span className="ml-auto w-1.5 h-1.5 rounded-full bg-indigo-400 flex-shrink-0" />
+                  )}
+                </>
+              )}
+            </NavLink>
+          ))}
+        </nav>
+
+        {/* Footer */}
+        <div className="px-3 pb-4 border-t border-white/[0.07] pt-3 space-y-1">
+          <div className="flex items-center gap-2.5 px-3 py-2 rounded-xl">
+            <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 flex items-center justify-center flex-shrink-0">
+              <svg className="w-3.5 h-3.5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-medium text-slate-300 truncate">Administrator</p>
+              <p className="text-[10px] text-slate-600 truncate">prepmate.admin</p>
+            </div>
+          </div>
+
+          <button
+            onClick={handleLogout}
+            className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-red-400/80 border border-red-500/15 bg-red-500/5 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/25 transition-all duration-150"
+          >
+            <svg className="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+            Sign out
+          </button>
+        </div>
+      </aside>
+    </>
   );
 };
 
