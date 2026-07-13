@@ -101,26 +101,20 @@ export class AuthService {
 
   // Current User
   async getCurrentUser() {
-
     try {
+        const authUser = await this.account.get();
 
-        const authUser =
-            await this.account.get();
-
-        const profile =
-            await databaseService.getUserProfile(authUser.$id);
+        const profile = await databaseService.getUserProfile(authUser.$id);
 
         return {
-            ...authUser,
-            ...profile,
+            ...profile,        // profile fields first (college, bio etc.)
+            ...authUser,       // ✅ authUser second so authUser.$id always wins
+            profileDocId: profile?.$id,  // ✅ store profile doc id separately
         };
 
     } catch (error) {
-
         return null;
-
     }
-
 }
 
   // Logout

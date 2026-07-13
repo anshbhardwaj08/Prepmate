@@ -30,7 +30,7 @@ export class DatabaseService {
             return await this.database.createDocument(
             conf.appwriteDatabaseId,
             conf.usersCollectionId,
-            ID.unique(),
+            userId,
             {
                 userId,
                 role,
