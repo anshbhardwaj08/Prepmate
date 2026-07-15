@@ -236,7 +236,7 @@ const CandidateCategories = () => {
                                     {/* CTA */}
                                     <button
                                         onClick={() =>
-                                            navigate(`/dashboard/interview/${category.$id}`)
+                                            navigate(`/dashboard/interview/guidelines/${category.$id}`)
                                         }
                                         className={`flex w-full items-center justify-center gap-2 rounded-xl ${c.btn} py-2.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:shadow-xl active:scale-[0.98]`}
                                     >
