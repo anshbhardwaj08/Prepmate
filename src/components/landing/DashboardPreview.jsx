@@ -1,17 +1,17 @@
 import { BrainCircuit, Briefcase, CheckCircle2, Clock3, TrendingUp } from "lucide-react";
 
 const skills = [
-  { name: "React",      score: 94, color: "from-sky-500 to-cyan-400"    },
-  { name: "JavaScript", score: 91, color: "from-yellow-400 to-amber-500" },
-  { name: "Node.js",    score: 88, color: "from-green-400 to-emerald-500"},
-  { name: "MongoDB",    score: 84, color: "from-emerald-400 to-teal-500" },
+  { name: "React",      score: 94, color: "from-sky-500 to-cyan-400"     },
+  { name: "JavaScript", score: 91, color: "from-yellow-400 to-amber-500"  },
+  { name: "Node.js",    score: 88, color: "from-green-400 to-emerald-500" },
+  { name: "MongoDB",    score: 84, color: "from-emerald-400 to-teal-500"  },
 ];
 
 const DashboardPreview = () => {
   return (
     <div className="relative w-full max-w-lg">
 
-      {/* ── Floating score chip (top-left) ── */}
+      {/* ── Floating score chip (top-left) — desktop only ── */}
       <div className="absolute -left-6 top-8 z-10 hidden xl:block animate-float">
         <div className="flex items-center gap-3 rounded-2xl border border-slate-700/60 bg-slate-900/90 px-4 py-3 shadow-xl shadow-black/30 backdrop-blur-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-green-500/20">
@@ -25,7 +25,7 @@ const DashboardPreview = () => {
         </div>
       </div>
 
-      {/* ── Floating next interview chip (bottom-right) ── */}
+      {/* ── Floating next interview chip (bottom-right) — desktop only ── */}
       <div className="absolute -right-6 -bottom-8 z-10 hidden xl:block animate-float-delayed">
         <div className="flex items-center gap-3 rounded-2xl border border-slate-700/60 bg-slate-900/90 px-4 py-3 shadow-xl shadow-black/30 backdrop-blur-sm">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-sky-500/20">
@@ -39,7 +39,7 @@ const DashboardPreview = () => {
       </div>
 
       {/* ── Main card ── */}
-      <div className="relative rounded-3xl border border-slate-700/60 bg-slate-900/80 p-7 shadow-2xl shadow-black/40 backdrop-blur-sm">
+      <div className="relative rounded-3xl border border-slate-700/60 bg-slate-900/80 p-5 sm:p-7 shadow-2xl shadow-black/40 backdrop-blur-sm">
 
         {/* Subtle inner glow */}
         <div className="pointer-events-none absolute inset-0 rounded-3xl bg-gradient-to-br from-sky-500/5 via-transparent to-violet-500/5" />
@@ -47,7 +47,7 @@ const DashboardPreview = () => {
         {/* Header */}
         <div className="flex items-start justify-between">
           <div>
-            <h2 className="text-lg font-bold text-white">Candidate Dashboard</h2>
+            <h2 className="text-base sm:text-lg font-bold text-white">Candidate Dashboard</h2>
             <p className="mt-0.5 text-sm text-slate-400">AI Performance</p>
           </div>
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-sky-500 to-violet-600 shadow-lg shadow-violet-900/40">
@@ -56,7 +56,7 @@ const DashboardPreview = () => {
         </div>
 
         {/* Interview progress */}
-        <div className="mt-7">
+        <div className="mt-6">
           <div className="mb-2.5 flex justify-between text-sm">
             <span className="text-slate-400">Interview Progress</span>
             <span className="font-semibold text-white">94%</span>
@@ -70,7 +70,7 @@ const DashboardPreview = () => {
         </div>
 
         {/* Skill bars */}
-        <div className="mt-7 space-y-4">
+        <div className="mt-6 space-y-4">
           {skills.map((skill) => (
             <div key={skill.name}>
               <div className="mb-2 flex justify-between text-sm">
@@ -88,7 +88,7 @@ const DashboardPreview = () => {
         </div>
 
         {/* Recent interviews */}
-        <div className="mt-7 rounded-2xl border border-slate-700/50 bg-slate-800/50 p-5">
+        <div className="mt-6 rounded-2xl border border-slate-700/50 bg-slate-800/50 p-4 sm:p-5">
           <div className="mb-4 flex items-center justify-between">
             <h3 className="text-sm font-semibold text-white">Recent Interviews</h3>
             <Briefcase size={16} className="text-sky-400" />

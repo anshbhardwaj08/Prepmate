@@ -1,4 +1,5 @@
-import { Container, SectionHeading ,Button} from "../common";
+import { Container, SectionHeading } from "../common";
+
 const categories = [
   "React", "JavaScript", "Node.js", "Express", "MongoDB",
   "DBMS", "Operating System", "Computer Networks", "HR",
@@ -26,4 +27,5 @@ const Categories = () => (
     </Container>
   </section>
 );
+
 export default Categories;

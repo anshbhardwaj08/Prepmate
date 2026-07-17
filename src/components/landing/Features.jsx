@@ -67,7 +67,7 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="relative bg-slate-950 py-28">
+    <section id="features" className="relative bg-slate-950 py-20 sm:py-28">
 
       {/* Subtle mid-section glow */}
       <div className="pointer-events-none absolute left-1/2 top-1/2 h-96 w-96 -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-600/8 blur-[120px]" />
@@ -75,29 +75,29 @@ const Features = () => {
       <Container>
 
         {/* Section header */}
-        <div className="mb-16 text-center">
+        <div className="mb-12 sm:mb-16 text-center">
           <span className="inline-block rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-violet-400">
             Features
           </span>
-          <h2 className="mt-5 text-4xl font-black tracking-tight text-white md:text-5xl">
+          <h2 className="mt-5 text-3xl sm:text-4xl md:text-5xl font-black tracking-tight text-white">
             Everything You Need to{" "}
             <span className="bg-gradient-to-r from-sky-400 to-violet-500 bg-clip-text text-transparent">
               Land the Job
             </span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-slate-400">
+          <p className="mx-auto mt-5 max-w-xl text-sm sm:text-base text-slate-400">
             A complete AI-powered interview preparation platform — from your first practice to your final offer.
           </p>
         </div>
 
         {/* Feature grid */}
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f) => {
             const Icon = f.icon;
             return (
               <div
                 key={f.title}
-                className={`group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/60 p-8 transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 hover:shadow-2xl ${f.glow}`}
+                className={`group relative overflow-hidden rounded-2xl border border-slate-800/80 bg-slate-900/60 p-6 sm:p-8 transition-all duration-300 hover:-translate-y-1 hover:border-slate-700 hover:shadow-2xl ${f.glow}`}
               >
                 {/* Hover gradient shimmer */}
                 <div className={`pointer-events-none absolute inset-0 rounded-2xl bg-gradient-to-br ${f.accent} opacity-0 transition-opacity duration-300 group-hover:opacity-5`} />
@@ -108,7 +108,7 @@ const Features = () => {
                 </div>
 
                 {/* Text */}
-                <h3 className="mt-6 text-lg font-bold text-white">{f.title}</h3>
+                <h3 className="mt-5 text-lg font-bold text-white">{f.title}</h3>
                 <p className="mt-3 text-sm leading-relaxed text-slate-400">{f.desc}</p>
 
                 {/* Bottom accent line */}
