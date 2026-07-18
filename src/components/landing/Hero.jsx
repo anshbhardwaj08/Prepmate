@@ -30,9 +30,9 @@ const Hero = () => {
   return (
     <section className="relative overflow-hidden bg-slate-950 pb-20 pt-24 md:pb-28 md:pt-36">
 
-      {/* ── Background atmosphere ── */}
-      <div className="pointer-events-none absolute left-[-160px] top-[-100px] h-[500px] w-[500px] rounded-full bg-sky-600/15 blur-[160px]" />
-      <div className="pointer-events-none absolute bottom-[-180px] right-[-140px] h-[500px] w-[500px] rounded-full bg-violet-600/15 blur-[160px]" />
+      {/* ── Background atmosphere — anchored to corners, no negative offsets ── */}
+      <div className="pointer-events-none absolute left-0 top-0 h-[500px] w-[400px] -translate-x-1/3 -translate-y-1/4 rounded-full bg-sky-600/15 blur-[160px]" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-[500px] w-[400px] translate-x-1/3 translate-y-1/4 rounded-full bg-violet-600/15 blur-[160px]" />
       <div className="pointer-events-none absolute left-1/2 top-1/3 h-64 w-64 -translate-x-1/2 rounded-full bg-cyan-500/8 blur-[100px]" />
 
       {/* ── Dot-grid overlay ── */}
@@ -43,7 +43,6 @@ const Hero = () => {
           backgroundSize: "40px 40px",
         }}
       />
-      {/* Fade edges of grid */}
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-slate-950 via-transparent to-slate-950" />
 
       <Container>
@@ -68,7 +67,7 @@ const Hero = () => {
             </h1>
 
             {/* Sub-copy */}
-            <p className="mt-6 max-w-[520px] text-base leading-[1.75] text-slate-400 sm:text-lg">
+            <p className="mt-6 w-full max-w-[520px] text-base leading-[1.75] text-slate-400 sm:text-lg">
               Practice company-level interviews, receive instant AI feedback,
               improve weak areas, and track your complete placement journey —
               all in one platform.
@@ -108,7 +107,7 @@ const Hero = () => {
           </div>
 
           {/* ── Right column — dashboard preview ── */}
-          <div className="relative flex w-full flex-1 justify-center pt-4 lg:pt-4">
+          <div className="relative flex w-full flex-1 justify-center pt-4">
             <DashboardPreview />
           </div>
 
