@@ -1,5 +1,6 @@
 import { ArrowRight, PlayCircle, Sparkles, Star, Users, Trophy } from "lucide-react";
 import { Container } from "../common";
+import {Link} from "react-router-dom";
 import DashboardPreview from "./DashboardPreview";
 
 const stats = [
@@ -75,10 +76,12 @@ const Hero = () => {
 
             {/* CTA buttons */}
             <div className="mt-8 flex w-full flex-wrap justify-center gap-4 sm:w-auto lg:justify-start">
+              <Link to ="/signup">
               <button className="group flex items-center gap-2.5 rounded-xl bg-gradient-to-r from-sky-500 to-violet-600 px-7 py-3.5 text-sm font-bold text-white shadow-lg shadow-violet-900/30 transition-all duration-200 hover:from-sky-400 hover:to-violet-500 hover:shadow-violet-900/50 hover:-translate-y-0.5">
                 Start Free
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </button>
+              </Link>
               <button className="flex items-center gap-2.5 rounded-xl border border-slate-700 px-7 py-3.5 text-sm font-semibold text-slate-300 transition-all duration-200 hover:border-slate-600 hover:bg-slate-800/60 hover:text-white hover:-translate-y-0.5">
                 <PlayCircle size={16} className="text-sky-400" />
                 Watch Demo
