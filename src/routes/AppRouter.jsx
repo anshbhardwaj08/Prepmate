@@ -26,7 +26,7 @@ import Results from "../pages/candidate/Results";
 import History from "../pages/candidate/History";
 import CandidateCategories from "../pages/candidate/CandidateCategories";
 import Contests from "../pages/candidate/Contests";
-import OAPrep from "../pages/candidate/OAPrep";          // ← NEW
+import OAPrep from "../pages/candidate/Oaprep";          // ← NEW
 
 // Admin Pages
 import AdminDashboard from "../pages/admin/Dashboard";
@@ -78,7 +78,7 @@ const router = createBrowserRouter([
                     { path: "categories", element: <CandidateCategories /> },
                     { path: "profile",    element: <Profile /> },
                     { path: "contests",   element: <Contests /> },
-                    { path: "oa-prep",    element: <OAPrep /> },   // ← NEW
+                    { path: "oa-prep",    element: <OAprep /> },   // ← NEW
 
                     // Guidelines page — shown BEFORE the interview
                     {
