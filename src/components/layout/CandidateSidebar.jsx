@@ -25,6 +25,19 @@ const navItems = [
       </svg>
     ),
   },
+  // ── NEW: OA Prep ────────────────────────────────────────────────
+  {
+    to: "/dashboard/oa-prep",
+    label: "OA Prep",
+    badge: "New",
+    icon: (
+      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8}
+          d="M13.5 21v-7.5a.75.75 0 01.75-.75h3a.75.75 0 01.75.75V21m-4.5 0H2.36m11.14 0H18m0 0h3.64m-1.39 0V9.349m-16.5 11.65V9.35m0 0a3.001 3.001 0 003.75-.615A2.993 2.993 0 009.75 9.75c.896 0 1.7-.393 2.25-1.016a2.993 2.993 0 002.25 1.016c.896 0 1.7-.393 2.25-1.016a3.001 3.001 0 003.75.614m-16.5 0a3.004 3.004 0 01-.621-4.72L4.318 3.44A1.5 1.5 0 015.378 3h13.243a1.5 1.5 0 011.06.44l1.19 2.189a3 3 0 01-.621 4.72m-13.5 8.65h3.75a.75.75 0 00.75-.75V13.5a.75.75 0 00-.75-.75H6.75a.75.75 0 00-.75.75v3.75c0 .415.336.75.75.75z" />
+      </svg>
+    ),
+  },
+  // ────────────────────────────────────────────────────────────────
   {
     to: "/dashboard/contests",
     label: "Contests",
@@ -116,7 +129,7 @@ const CandidateSidebar = ({ isOpen, onClose }) => {
 
         {/* Nav links */}
         <nav className="flex-1 space-y-0.5 px-3 overflow-y-auto">
-          {navItems.map(({ to, end, label, icon }) => (
+          {navItems.map(({ to, end, label, icon, badge }) => (
             <NavLink
               key={to}
               to={to}
@@ -125,19 +138,43 @@ const CandidateSidebar = ({ isOpen, onClose }) => {
               className={({ isActive }) =>
                 `group flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150 ${
                   isActive
-                    ? "bg-blue-600/15 text-blue-400 border border-blue-500/20"
+                    ? to === "/dashboard/oa-prep"
+                      ? "bg-amber-500/10 text-amber-400 border border-amber-500/20"
+                      : "bg-blue-600/15 text-blue-400 border border-blue-500/20"
                     : "text-slate-400 hover:bg-slate-800/60 hover:text-slate-200 border border-transparent"
                 }`
               }
             >
               {({ isActive }) => (
                 <>
-                  <span className={`transition-colors ${isActive ? "text-blue-400" : "text-slate-500 group-hover:text-slate-300"}`}>
+                  <span
+                    className={`transition-colors ${
+                      isActive
+                        ? to === "/dashboard/oa-prep"
+                          ? "text-amber-400"
+                          : "text-blue-400"
+                        : "text-slate-500 group-hover:text-slate-300"
+                    }`}
+                  >
                     {icon}
                   </span>
+
                   {label}
+
+                  {/* "New" badge — only shown when not active */}
+                  {badge && !isActive && (
+                    <span className="ml-auto rounded-full bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold text-amber-400 border border-amber-500/20">
+                      {badge}
+                    </span>
+                  )}
+
+                  {/* Active dot */}
                   {isActive && (
-                    <span className="ml-auto h-1.5 w-1.5 rounded-full bg-blue-400" />
+                    <span
+                      className={`ml-auto h-1.5 w-1.5 rounded-full ${
+                        to === "/dashboard/oa-prep" ? "bg-amber-400" : "bg-blue-400"
+                      }`}
+                    />
                   )}
                 </>
               )}
