@@ -78,7 +78,7 @@ const router = createBrowserRouter([
                     { path: "categories", element: <CandidateCategories /> },
                     { path: "profile",    element: <Profile /> },
                     { path: "contests",   element: <Contests /> },
-                    { path: "oa-prep",    element: <OAprep /> },   // ← NEW
+                    { path: "oa-prep",    element: <OAPrep /> },   // ← NEW
 
                     // Guidelines page — shown BEFORE the interview
                     {
